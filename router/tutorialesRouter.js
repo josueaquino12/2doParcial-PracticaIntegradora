@@ -33,7 +33,7 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", async(req, res, next) => {
     try {
-        const tutorialAdd = await usuariosController.addTutorial(req.body);
+        const tutorialAdd = await tutorialesController.addTutorial(req.body);
         res.status(201).json({ status: 'success', message: `${tutorialAdd} Tutorial agregado.`, tutorial: req.body })
     } catch (e) {
       res.status(500).json(e);

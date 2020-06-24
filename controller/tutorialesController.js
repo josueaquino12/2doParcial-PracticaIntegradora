@@ -27,10 +27,10 @@ const removeTutorial = async (id) => {
 };
  
 
-const addTutorial = async (usuario) => {
+const addTutorial = async (tutoriales) => {
     const query = {
         text: 'INSERT INTO TUTORIAL (titulo, descripcion, publicado) VALUES ($1, $2, $3)',
-        values: [tutorial.titulo, tutorial.descripcion, tutorial.publicado]
+        values: [tutoriales.titulo, tutoriales.descripcion, tutoriales.publicado]
       }
     const addRow = await pool.query(query);
     return addRow.rowCount;
