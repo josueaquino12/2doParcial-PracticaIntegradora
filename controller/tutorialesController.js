@@ -17,6 +17,17 @@ const getTutorial = async (id) => {
 };
 
 
+const updateTutorial = async (id,tutoriales) => {
+ 
+  const query = {
+      text: 'UPDATE TUTORIAL SET titulo = $1, descripcion = $2, publicado = $3 WHERE ID = $4',
+      values: [tutoriales.titulo, tutoriales.descripcion , tutoriales.publicado , id],  
+    };
+  const updateRow = await pool.query(query);
+  return updateRow.rowCount;
+};
+
+
 const removeTutorial = async (id) => {
     const query = {
         text: 'DELETE FROM TUTORIAL WHERE ID = $1',
@@ -26,6 +37,16 @@ const removeTutorial = async (id) => {
     return removeRow.rowCount;
 };
  
+
+const removeTutoriales = async () => {
+  const query = {
+    text: "DELETE FROM TUTORIAL",
+  };
+
+  const removeRows = await pool.query(query);
+
+  return removeRows.rowCount;
+};
 
 const addTutorial = async (tutoriales) => {
     const query = {
@@ -37,4 +58,4 @@ const addTutorial = async (tutoriales) => {
 }
 
 
-module.exports =  { getTutoriales, addTutorial, getTutorial, removeTutorial };
+module.exports =  { getTutoriales, addTutorial, getTutorial, removeTutoriales, removeTutorial, updateTutorial };
